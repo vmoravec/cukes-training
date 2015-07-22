@@ -8,7 +8,8 @@ Given(/^the local ssh config directory "([^"]*)" exists$/) do |arg1|
   @sshdir = @homedir.join(".ssh")
 end
 
-When(/^I list the user home directory$/) do
+Given(/^the home directory is not empty$/) do
+  expect(@homedir.children.size.nonzero?).to be_truthy
 end
 
 Then(/^I get an non\-empty list$/) do
