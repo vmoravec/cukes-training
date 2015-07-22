@@ -16,10 +16,10 @@ Then(/^I get an non\-empty list$/) do
 end
 
 When(/^I list the content of ssh config dir$/) do
-  @files = @homedir.children
+  @ssh_files = @sshdir.children
 end
 
 Then(/^I get an non\-empty list entries$/) do
-  expect(@sshdir.children.size.nonzero?).to be_truthy
+  expect(@ssh_files.size.nonzero?).to be_truthy
 end
 
