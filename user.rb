@@ -1,27 +1,25 @@
+require "pathname"
+require "etc"
+require "forwardable"
+
 class User
   ROOT = "root"
 
   extend Forwardable
 
-  def_delegators :@info, :uid, :gid
+  def_delegators :@info, :uid, :gid, :shell
 
   attr_reader :login, :name, :homedir
 
   def initialize
-    if Process.uid.zero?
-      @login = ROOT
-      @name = ROOT
-      @homedir = "/" + ROOT
-    else
-      @login = Etc.getlogin
-      @info = Etc.getpwnam(login)
-      @name = detect_name
-      @homedir = @info.dir
-    end
+    @login = Process.uid.zero? ? ROOT : Etc.getlogin
+    @info = Etc.getpwnam(login)
+    @name = detect_name
+    @homedir = Pathname.new(@info.dir)
   end
 
   def root?
-    Process.uid.zero?
+    login == ROOT
   end
 
   private
