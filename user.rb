@@ -1,4 +1,6 @@
 class User
+  ROOT = "root"
+
   extend Forwardable
 
   def_delegators :@info, :uid, :gid
@@ -7,9 +9,9 @@ class User
 
   def initialize
     if Process.uid.zero?
-      @login = "root"
-      @name = "root"
-      @homedir = "/root/"
+      @login = ROOT
+      @name = ROOT
+      @homedir = "/" + ROOT
     else
       @login = Etc.getlogin
       @info = Etc.getpwnam(login)
