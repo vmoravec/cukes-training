@@ -1,1 +1,1 @@
-# cukes-training
+## Example of cucumber feature
