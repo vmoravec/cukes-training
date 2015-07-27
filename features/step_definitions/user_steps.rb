@@ -2,7 +2,7 @@ Given(/^the user home directory exists$/) do
   expect(user.homedir.exist?).to eq(true)
 end
 
-Given(/^the local ssh config directory "([^"]*)" exists$/) do |arg1|
+Given(/^the config directory \.ssh exists$/) do
   @sshdir = user.homedir.join(".ssh")
 end
 
