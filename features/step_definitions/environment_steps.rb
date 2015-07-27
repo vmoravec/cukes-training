@@ -1,6 +1,6 @@
 Given(/^the user home directory exists$/) do
-  @user = User.new
-  @homedir = Pathname.new(@user.homedir)
+  user = User.new
+  @homedir = Pathname.new(user.homedir)
   expect(@homedir.exist?).to be_truthy
 end
 
@@ -24,4 +24,8 @@ Then(/^I can find at least on pair of ssh keys$/) do
   [ /\Aid_(rsa|dsa).pub$/, /\Aid_(rsa|dsa)$/ ].each do |key|
     expect(@ssh_files.map(&:basename).map(&:to_s).grep(key)).not_to be_empty
   end
+end
+
+Given(/^the home directory is not empty$/) do
+  expect(@homedir.children.size.nonzero?).to be_truthy
 end
