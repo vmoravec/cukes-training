@@ -1,1 +1,1 @@
-## Example of cucumber feature
+## Repository for cucumber training
