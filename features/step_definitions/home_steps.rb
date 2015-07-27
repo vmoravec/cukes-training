@@ -1,5 +1,5 @@
 Given(/^the user home directory exists$/) do
-  expect(user.homedir.exist?).to be_truthy
+  expect(user.homedir.exist?).to eq(true)
 end
 
 Given(/^the local ssh config directory "([^"]*)" exists$/) do |arg1|

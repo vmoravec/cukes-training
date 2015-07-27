@@ -1,4 +1,4 @@
-Feature: User environment
+Feature: User home
   Background:
     Given the user home directory exists
 
