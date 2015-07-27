@@ -1,3 +1,5 @@
+require "pathname"
+
 class User
   ROOT = "root"
 
@@ -11,12 +13,12 @@ class User
     if Process.uid.zero?
       @login = ROOT
       @name = ROOT
-      @homedir = "/" + ROOT
+      @homedir = Pathname.new("/" + ROOT)
     else
       @login = Etc.getlogin
       @info = Etc.getpwnam(login)
       @name = detect_name
-      @homedir = @info.dir
+      @homedir = Pathname.new(@info.dir)
     end
   end
 
