@@ -1,9 +1,6 @@
 Feature: User
-  Background:
-    Given the user home directory exists
-
   Scenario: SSH configured
-    Given the config directory .ssh exists 
-    When I list the content of ssh config dir
+    When the user home directory exists
+    And the config directory .ssh exists 
+    And I list the content of ssh config dir
     Then I get an non-empty list of entries
-    And I can find at least on pair of ssh keys
